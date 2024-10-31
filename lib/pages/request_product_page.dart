@@ -3,6 +3,7 @@ import '../models/product_request.dart';
 
 class RequestProductPage extends StatefulWidget {
   final Function(ProductRequest) onRequestAdded;
+
   const RequestProductPage({super.key, required this.onRequestAdded});
 
   @override
@@ -45,7 +46,10 @@ class _RequestProductPageState extends State<RequestProductPage> {
       widget.onRequestAdded(request);
 
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Solicitud enviada con éxito')),
+        SnackBar(
+          content: const Text('Solicitud enviada con éxito'),
+          backgroundColor: Theme.of(context).colorScheme.primary,
+        ),
       );
 
       Navigator.pop(context);
@@ -57,15 +61,26 @@ class _RequestProductPageState extends State<RequestProductPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Solicitar Producto'),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        foregroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(24.0),
           child: Form(
             key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                Text(
+                  'Complete los datos',
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
+                ),
+                const SizedBox(height: 24),
                 DropdownButtonFormField<String>(
                   value: _selectedProductType,
                   decoration: const InputDecoration(
@@ -129,13 +144,10 @@ class _RequestProductPageState extends State<RequestProductPage> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 32),
                 ElevatedButton(
                   onPressed: _submitForm,
-                  child: const Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Text('Enviar Solicitud'),
-                  ),
+                  child: const Text('Enviar Solicitud'),
                 ),
               ],
             ),
