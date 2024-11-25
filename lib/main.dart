@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:google_fonts/google_fonts.dart';
 import 'pages/welcome_page.dart';
 
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
           seedColor: const Color(0xFF6C63FF),
           primary: const Color(0xFF6C63FF),
           secondary: const Color(0xFF03DAC5),
+          // ignore: deprecated_member_use
           background: Colors.white,
           surface: Colors.white,
         ),
